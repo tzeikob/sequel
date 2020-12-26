@@ -1,7 +1,7 @@
 # MySQL Server 5.7
 
 # Pull the base image
-FROM alpine:3.12
+FROM debian:buster-slim
 
 # Add our user and group first
-RUN addgroup -S mysql && adduser -S mysql -G mysql
+RUN groupadd -r mysql && useradd -r -g mysql mysql
