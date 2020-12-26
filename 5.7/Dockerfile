@@ -13,3 +13,7 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
     openssl \
     perl \
   && rm -rf /var/lib/apt/lists/*
+
+# Set the MySQL version
+ENV MYSQL_MAJOR 5.7
+ENV MYSQL_VERSION 5.7.32-1debian10
