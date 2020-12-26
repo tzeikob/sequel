@@ -17,3 +17,6 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
 # Set the MySQL version
 ENV MYSQL_MAJOR 5.7
 ENV MYSQL_VERSION 5.7.32-1debian10
+
+# Add the MySQL repository to the sources
+RUN echo 'deb http://repo.mysql.com/apt/debian/ buster mysql-5.7' > /etc/apt/sources.list.d/mysql.list
