@@ -9,4 +9,7 @@ RUN groupadd -r mysql && useradd -r -g mysql mysql
 # Install thrid-party dependencies
 RUN apt-get update && apt-get install -y --no-install-recommends \
     wget \
+    pwgen \
+    openssl \
+    perl \
   && rm -rf /var/lib/apt/lists/*
