@@ -1,14 +1,14 @@
-# Quick reference
+## Quick reference
  * Maintained by: [Iakovos Papadopoulos](https://github.com/tzeikob/sequel)
  * Based on: [Official Docker Team MySQL Server image](https://hub.docker.com/_/mysql)
  * Where to get help: [Docker Community Forums](https://forums.docker.com/)
 
-# Supported tags and respective `Dockerfile` links
+## Supported tags and respective `Dockerfile` links
  * [5.7.32, 5.7, 5](https://github.com/tzeikob/sequel/blob/main/5.7/Dockerfile)
 
-# How to use this image
+## How to use this image
 
-## Start an image instance
+### Start an image instance
 
 Starting an instance is simple:
 
@@ -26,7 +26,7 @@ docker run -d --name any-name \
 
 where `any-name` is the name you want to assign to the container, `secret-pass` is the secret password to be set for the root MySQL user and tag is the tag specifying the version of the MySQL server.
 
-## Access container shell
+### Access container shell
 
 The docker exec command allows you to run commands inside a Docker container. The following command line will give you a bash shell inside your mysql container:
 
@@ -34,10 +34,26 @@ The docker exec command allows you to run commands inside a Docker container. Th
 docker exec -it any-name bash
 ```
 
-## View container's log file
+### View container's log file
 
 The log is available through Docker's container log, you can tail of the file by using the `follow` flag
 
 ```
 docker logs -f -n all any-name
+```
+
+### Creating database dumps
+
+Most of the normal tools will work, although their usage might be a little convoluted in some cases to ensure they have access to the mysqld server. A simple way to ensure this is to use docker exec and run the tool from the same container, similar to the following:
+
+```
+docker exec any-name sh -c 'exec mysqldump --all-databases -uroot -p"$MYSQL_ROOT_PASSWORD"' > /path/on/your/host/all.sql
+```
+
+### Restoring data from dump files
+
+For restoring data. You can use docker exec command with -i flag, similar to the following:
+
+```
+docker exec -i any-name sh -c 'exec mysql -uroot -p"$MYSQL_ROOT_PASSWORD"' < /path/on/your/host/all.sql
 ```
