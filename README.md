@@ -4,13 +4,13 @@
  * Where to get help: [Docker Community Forums](https://forums.docker.com/)
 
 # Supported tags and respective `Dockerfile` links
- * [5.7.32, 5.7, 5](https://github.com/tzeikob/sequel/blob/xxx/5.7/Dockerfile)
+ * [5.7.32, 5.7, 5](https://github.com/tzeikob/sequel/blob/main/5.7/Dockerfile)
 
 # How to use this image
 
 ## Start an image instance
 
-Starting a instance is simple:
+Starting an instance is simple:
 
 ```
 mkdir -p any-name
