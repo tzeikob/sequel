@@ -37,7 +37,7 @@ RUN { \
     echo mysql-community-server mysql-community-server/data-dir select ''; \
     echo mysql-community-server mysql-community-server/root-pass password ''; \
     echo mysql-community-server mysql-community-server/re-root-pass password ''; \
-    echo mysql-community-server mysql-community-server/remove-test-db select true; \
+    echo mysql-community-server mysql-community-server/remove-test-db select false; \
   } | debconf-set-selections \
   && apt-get update \
   && apt-get install -y mysql-server="${MYSQL_VERSION}" \
@@ -52,10 +52,7 @@ RUN { \
   && chown -R mysql:mysql /var/lib/mysql /var/run/mysqld \
   && chmod 1777 /var/run/mysqld /var/lib/mysql
 
-# Create a folder for SQL script files
-RUN mkdir -p /home/scripts
-
-VOLUME [ "/var/lib/mysql", "/home/scripts" ]
+VOLUME /var/lib/mysql
 
 # Set the container's entry point
 COPY docker-entrypoint.sh /usr/local/bin/
