@@ -75,8 +75,8 @@ if [ "$1" = 'mysqld' ]; then
       exit 1
     fi
 
+    echo "CAUTION: This container is for DEVELOPMENT purposes only!"
     echo "MySQL init process done, ready for start up!"
-    echo "CAUTION: This container is only for DEVELOPMENT purposes!"
     echo
   fi
 fi
