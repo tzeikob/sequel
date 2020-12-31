@@ -11,7 +11,16 @@ RUN apt-get update \
     gnupg \
     openssl \
     gosu \
+    perl \
   && rm -rf /var/lib/apt/lists/*
+
+# Install more locales
+RUN apt-get update \
+  && apt-get install -y locales \
+  && rm -rf /var/lib/apt/lists/* \
+  && localedef -i en_US -c -f UTF-8 -A /usr/share/locale/locale.alias en_US.UTF-8
+
+ENV LANG=en_US.utf8
 
 # Add MySQL public repository
 # gpg: key 5072E1F5: public key "MySQL Release Engineering <mysql-build@oss.oracle.com>" imported
