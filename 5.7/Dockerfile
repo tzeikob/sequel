@@ -4,15 +4,12 @@ FROM ubuntu:18.04
 # Create user and user group for mysql
 RUN groupadd -r mysql && useradd -r -g mysql mysql
 
-# Install various dependencies
+# Install various third-party dependencies
 RUN apt-get update \
   && apt-get install -y --no-install-recommends \
     nano \
     gnupg \
     openssl \
-    perl \
-    pwgen \
-    xz-utils \
     gosu \
   && rm -rf /var/lib/apt/lists/*
 
