@@ -61,8 +61,8 @@ if [ "$1" = 'mysqld' ]; then
       ALTER USER 'root'@'localhost' IDENTIFIED BY '${MYSQL_ROOT_PASSWORD}';
       GRANT ALL ON *.* TO 'root'@'localhost' WITH GRANT OPTION;
 
-      CREATE USER 'root'@'%' IDENTIFIED BY '${MYSQL_ROOT_PASSWORD}' ;
-      GRANT ALL ON *.* TO 'root'@'%' WITH GRANT OPTION ;
+      CREATE USER 'root'@'%' IDENTIFIED BY '${MYSQL_ROOT_PASSWORD}';
+      GRANT ALL ON *.* TO 'root'@'%' WITH GRANT OPTION;
 
       FLUSH PRIVILEGES;
       DROP DATABASE IF EXISTS test;
