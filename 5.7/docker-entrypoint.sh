@@ -54,16 +54,20 @@ if [ "$1" = 'mysqld' ]; then
     sleep 15
     echo "Temporary server started"
 
-    # Setting up the root user password
-    echo "Setting up the root user password"
+    # Setting up the root users
+    echo "Setting up the root users"
     mysql --protocol=socket -uroot -hlocalhost --socket="${SOCKET}" --comments --database=mysql <<-EOSQL
       SET @@SESSION.SQL_LOG_BIN=0;
       ALTER USER 'root'@'localhost' IDENTIFIED BY '${MYSQL_ROOT_PASSWORD}';
       GRANT ALL ON *.* TO 'root'@'localhost' WITH GRANT OPTION;
+
+      CREATE USER 'root'@'%' IDENTIFIED BY '${MYSQL_ROOT_PASSWORD}' ;
+      GRANT ALL ON *.* TO 'root'@'%' WITH GRANT OPTION ;
+
       FLUSH PRIVILEGES;
       DROP DATABASE IF EXISTS test;
 		EOSQL
-    echo "Root user password has been set"
+    echo "Root users have been set"
 
     echo "Shutting down temporary server"
     if ! mysqladmin shutdown -p"${MYSQL_ROOT_PASSWORD}" -uroot --socket="${SOCKET}"; then
