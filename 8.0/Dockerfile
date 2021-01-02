@@ -60,6 +60,8 @@ RUN { \
   && chown -R mysql:mysql /var/lib/mysql /var/run/mysqld \
   && chmod 1777 /var/run/mysqld /var/lib/mysql
 
+VOLUME /var/lib/mysql
+
 # Set the container's entry point
 COPY docker-entrypoint.sh /usr/local/bin/
 RUN chmod +x usr/local/bin/docker-entrypoint.sh \
