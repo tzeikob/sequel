@@ -43,6 +43,23 @@ ENV MYSQL_VERSION=8.0.22-1ubuntu18.04
 
 RUN echo 'deb http://repo.mysql.com/apt/ubuntu/ bionic mysql-'$MYSQL_MAJOR > /etc/apt/sources.list.d/mysql.list
 
+# Install MySQL Server
+RUN { \
+    echo mysql-community-server mysql-community-server/data-dir select ''; \
+    echo mysql-community-server mysql-community-server/root-pass password ''; \
+    echo mysql-community-server mysql-community-server/re-root-pass password ''; \
+    echo mysql-community-server mysql-community-server/remove-test-db select false; \
+  } | debconf-set-selections \
+  && apt-get update \
+  && apt-get install -y \
+    mysql-community-client="${MYSQL_VERSION}" \
+    mysql-community-server-core="${MYSQL_VERSION}" \
+  && rm -rf /var/lib/apt/lists/* \
+  # Clean up and initialize the data folder
+  && rm -rf /var/lib/mysql && mkdir -p /var/lib/mysql /var/run/mysqld \
+  && chown -R mysql:mysql /var/lib/mysql /var/run/mysqld \
+  && chmod 1777 /var/run/mysqld /var/lib/mysql
+
 # Set the container's entry point
 COPY docker-entrypoint.sh /usr/local/bin/
 RUN chmod +x usr/local/bin/docker-entrypoint.sh \
