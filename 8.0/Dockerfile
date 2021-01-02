@@ -62,6 +62,9 @@ RUN { \
 
 VOLUME /var/lib/mysql
 
+# Copy default configuration files
+COPY config/ /etc/mysql/
+
 # Set the container's entry point
 COPY docker-entrypoint.sh /usr/local/bin/
 RUN chmod +x usr/local/bin/docker-entrypoint.sh \
