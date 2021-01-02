@@ -3,7 +3,8 @@
  * Where to get help: [Docker Community Forums](https://forums.docker.com/) [Docker Community Slack](https://dockr.ly/slack), or [Stack Overflow](https://stackoverflow.com/search?tab=newest&q=docker)
 
 ## Supported tags and respective `Dockerfile` links
- * [5.7.32, 5.7, 5, latest](https://github.com/tzeikob/sequel/blob/main/5.7/Dockerfile)
+ * [8.0.22, 8.0, 8, latest](https://github.com/tzeikob/sequel/blob/main/8.0/Dockerfile)
+ * [5.7.32, 5.7, 5](https://github.com/tzeikob/sequel/blob/main/5.7/Dockerfile)
 
 ## Quick reference (cont.)
  * Where to file issues: [bug tracker](https://github.com/tzeikob/sequel/issues)
