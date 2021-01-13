@@ -63,6 +63,26 @@ docker run -d --name any-name \
   tzeikob/sequel:tag
 ```
 
+### Customize configuration with a custom configuration file
+
+You can customize the configuration of the mysql server by providing your configuration file `my.cnf` at the creation of the container like so:
+
+```
+run -d --name any-name \
+  -p 3306:3306 \
+  -v $(pwd)/data:/var/lib/mysql \
+  -v $(pwd)/config/my.cnf:/etc/mysql/my.cnf \
+  tzeikob/sequel:5.7
+```
+
+the configuration file `config/my.cnf` will replace the existing default `/etc/mysql/my.cnf` file. You can find below, a base configuration file to start with mysql daemon configuration.
+
+```
+[mysqld]
+
+!includedir /etc/mysql/conf.d/
+```
+
 ### Access the container's shell
 
 The docker exec command allows you to run commands inside a Docker container. The following command line will give you a bash shell inside your mysql container:
