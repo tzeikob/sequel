@@ -72,7 +72,7 @@ run -d --name any-name \
   -p 3306:3306 \
   -v $(pwd)/data:/var/lib/mysql \
   -v $(pwd)/config/my.cnf:/etc/mysql/my.cnf \
-  tzeikob/sequel:5.7
+  tzeikob/sequel:tag
 ```
 
 the configuration file `config/my.cnf` will replace the existing default `/etc/mysql/my.cnf` file. You can find below, a base configuration file to start with mysql daemon configuration.
